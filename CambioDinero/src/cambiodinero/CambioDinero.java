@@ -5,6 +5,7 @@
  */
 package cambiodinero;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -14,19 +15,22 @@ import java.util.Scanner;
 public class CambioDinero {
 
    
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
         System.out.println("este programa te divide el dinero en monedas dominicanas");
         System.out.println("inserte el dinero que se desea");
-        int numero = sc.nextInt();
+        while(!sc.hasNextInt()) 
+            {
+                System.out.println("no has entrando un numero positivo, intenta denuevo");
+                sc.next();
+            }
+        int numero  = sc.nextInt();      
         Cambio(numero);
+
     }
-    public static int[] Cambio(int numero)
-        {
+    public static int[] Cambio(int numero) {
 
-            int[] resultado = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-            resultado[0] = 5;
-
+            int[] resultado = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };             
             if (numero >= 2000)
             {
                 System.out.println("son " + numero / 2000 + " de 2000");
@@ -87,6 +91,8 @@ public class CambioDinero {
                 resultado[9] = numero / 1;
                 
             }
+            System.out.println("");
+            System.out.println("["+resultado[0]+","+resultado[1]+","+resultado[2]+","+resultado[3]+","+resultado[4]+","+resultado[5]+","+resultado[6]+","+resultado[7]+","+resultado[8]+","+resultado[9]+"]");
             return resultado;
         }
     
